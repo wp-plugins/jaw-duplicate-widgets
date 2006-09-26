@@ -3,7 +3,7 @@
 Plugin Name: JAW Duplicate Widgets
 Plugin URI: http://justaddwater.dk/wordpress-plugins/
 Description: Makes it possible to duplicate a widget so it can be used more than once (i.e. in two different sidebars or two times in the same sidebar). Requires the <a href="http://automattic.com/code/widgets/">Sidebar Widgets plugin</a> from Automattic.
-Version: 1.0
+Version: 1.0.1
 Author: Thomas Watson Steen
 Author URI: http://justaddwater.dk/
 */
@@ -17,7 +17,7 @@ class JAWDuplicateWidgets
 		if(is_array($options))
 			foreach($options as $widget)
 				foreach($widget as $duplicate)
-					if(is_array($duplicate))
+					if(is_array($duplicate) && function_exists("register_sidebar_widget"))
 						register_sidebar_widget($duplicate['name'], $duplicate['callback'], '', 'jaw-duplicatewidget', $duplicate);
 	}
 
@@ -52,7 +52,8 @@ class JAWDuplicateWidgets
 						foreach($widget as $dup_id => $duplicate)
 							if(is_array($duplicate) && $dup_id == $id)
 							{
-								unregister_sidebar_widget($duplicate['name']);
+								if(function_exists("unregister_sidebar_widget"))
+									unregister_sidebar_widget($duplicate['name']);
 								unset($newoptions[$widget_id][$dup_id]);
 								if(count($newoptions[$widget_id]) == 0)
 									unset($newoptions[$widget_id]);
