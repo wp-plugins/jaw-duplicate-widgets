@@ -3,7 +3,7 @@
 Plugin Name: JAW Duplicate Widgets
 Plugin URI: http://justaddwater.dk/wordpress-plugins/
 Description: Makes it possible to duplicate a widget so it can be used more than once (i.e. in two different sidebars or two times in the same sidebar). Requires the <a href="http://automattic.com/code/widgets/">Sidebar Widgets plugin</a> from Automattic.
-Version: 1.0.2
+Version: 1.0.3
 Author: Thomas Watson Steen
 Author URI: http://justaddwater.dk/
 */
@@ -29,7 +29,7 @@ class JAWDuplicateWidgets
 
 	function setup()
 	{
-		global $registered_widgets;
+		global $wp_registered_widgets;
 		$options = $newoptions = get_option('jaw-duplicatewidget');
 
 		if (isset($_POST['jaw-duplicatewidget-duplicate']))
@@ -41,7 +41,7 @@ class JAWDuplicateWidgets
 				$newoptions[$id] = array();
 				
 			// run through each and every registered widget
-			foreach($registered_widgets as $name => $widget)
+			foreach($wp_registered_widgets as $name => $widget)
 				// this this is the widget we are trying to duplicate...
 				if($widget['id'] == $id)
 				{
@@ -86,7 +86,7 @@ class JAWDuplicateWidgets
 	
 	function page() 
 	{
-		global $registered_widgets;
+		global $wp_registered_widgets;
 		$options = get_option('jaw-duplicatewidget');
 
 		// build an index of the duplicated widgets
@@ -103,7 +103,7 @@ class JAWDuplicateWidgets
 				<select id="jaw-duplicatewidget" name="jaw-duplicatewidget">
 <?php
 		// check against the dup-index and output all widgets that are not duplicated
-		foreach ($registered_widgets as $name => $widget)
+		foreach ($wp_registered_widgets as $name => $widget)
 		{
 			if(!$dups[$widget['id']])
 				print("<option value=\"{$widget['id']}\">" . __($name) . "</option>\n");
