@@ -2,8 +2,8 @@
 /*
 Plugin Name: JAW Duplicate Widgets
 Plugin URI: http://justaddwater.dk/wordpress-plugins/
-Description: Makes it possible to duplicate a widget so it can be used more than once (i.e. in two different sidebars or two times in the same sidebar). Requires the <a href="http://automattic.com/code/widgets/">Sidebar Widgets plugin</a> from Automattic.
-Version: 1.0.3
+Description: Makes it possible to duplicate a widget so it can be used more than once (i.e. in two different sidebars or two times in the same sidebar). This plugin is using the internal widget support of WordPress 2.2 and above. If you plan to use this plugin with WordPress 2.1 or below you have to download version 1.0.2 of the plugin. Version 1.0.2 and below require the <a href="http://automattic.com/code/widgets/">Sidebar Widgets plugin</a> from Automattic.
+Version: 1.0.4
 Author: Thomas Watson Steen
 Author URI: http://justaddwater.dk/
 */
